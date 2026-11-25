@@ -11,159 +11,196 @@
 :root {
   --bg:#080808;
   --surface:#151515;
-  --text:#ffffff;
-  --muted:#aaaaaa;
+  --text:#fff;
+  --muted:#aaa;
   --gold:#d4af37;
   --border:#292929;
 }
-
 [data-theme="light"] {
-  --bg:#ffffff;
+  --bg:#fff;
   --surface:#f5f3ed;
   --text:#171717;
-  --muted:#666666;
+  --muted:#666;
   --gold:#a77b16;
   --border:#e5dfd1;
 }
-
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+* {box-sizing:border-box;margin:0;padding:0}
 body {
   background:var(--bg);
   color:var(--text);
   font-family:Arial,sans-serif;
-  transition:background .3s,color .3s;
+  padding-bottom:85px;
+  transition:.3s;
 }
+button,input {font-family:inherit}
+button {cursor:pointer}
 
 header {
   background:var(--surface);
   border-bottom:1px solid var(--border);
-  padding:16px 5%;
+  padding:15px 5%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
 }
-
 .logo {
   color:var(--gold);
   font-family:Georgia,serif;
   font-size:27px;
   font-weight:bold;
 }
-
 .logo small {
   display:block;
-  font-family:Arial,sans-serif;
-  font-size:9px;
-  letter-spacing:2px;
   color:var(--text);
+  font:9px Arial;
+  letter-spacing:2px;
+  margin-top:3px;
 }
-
-.header-actions {
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-button {
-  cursor:pointer;
-  border:none;
-}
-
+.header-actions {display:flex;gap:10px}
 .theme-btn,.cart-btn {
   background:var(--bg);
   color:var(--gold);
   border:1px solid var(--gold);
-  padding:10px 13px;
+  padding:11px 13px;
   border-radius:8px;
   font-weight:bold;
 }
 
-nav {
+/* PROMOTIONAL CAROUSEL */
+
+.promo-area {
+  padding:22px 5% 8px;
+}
+.promo-carousel {
   display:flex;
-  justify-content:center;
-  gap:25px;
-  padding:15px;
-  border-bottom:1px solid var(--border);
+  gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  border-radius:15px;
 }
+.promo-carousel::-webkit-scrollbar {display:none}
 
-nav a {
-  color:var(--text);
-  text-decoration:none;
-  font-size:13px;
-}
-
-nav a:hover {color:var(--gold);}
-
-.hero {
-  margin:25px 5%;
-  padding:65px 35px;
-  min-height:310px;
+.promo-slide {
+  flex:0 0 100%;
+  min-width:100%;
+  height:330px;
+  scroll-snap-align:center;
+  position:relative;
+  overflow:hidden;
   border:1px solid var(--gold);
   border-radius:15px;
-  background:linear-gradient(110deg,#080808,#29200d,#080808);
+  background:#17130a;
+}
+.promo-slide img,
+.promo-slide video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.promo-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.05));
   display:flex;
-  align-items:center;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  padding:30px;
+  pointer-events:none;
 }
-
-.hero-content {max-width:550px;}
-
-.hero h1 {
-  font-family:Georgia,serif;
+.promo-overlay h1 {
   color:#e5c15a;
-  font-size:clamp(32px,6vw,55px);
-  margin-bottom:15px;
+  font-family:Georgia,serif;
+  font-size:clamp(30px,6vw,52px);
+  margin-bottom:12px;
+  max-width:400px;
 }
-
-.hero p {
-  color:#eeeeee;
+.promo-overlay p {
+  color:white;
   line-height:1.7;
-  margin-bottom:22px;
+  max-width:350px;
+  margin-bottom:18px;
 }
-
-.gold-btn {
+.promo-overlay button {
+  pointer-events:auto;
   background:var(--gold);
   color:#080808;
-  padding:13px 24px;
+  border:0;
+  padding:13px 22px;
   border-radius:6px;
   font-weight:bold;
 }
-
-section {padding:25px 5%;}
-
-.section-title {
-  font-family:Georgia,serif;
-  font-size:25px;
-  margin-bottom:20px;
+.promo-dots {
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  padding:13px;
+}
+.promo-dot {
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--border);
+  border:0;
+}
+.promo-dot.active {background:var(--gold)}
+.swipe-hint {
+  color:var(--muted);
+  text-align:center;
+  font-size:11px;
+  padding-bottom:8px;
 }
 
+/* ADVERTISEMENTS */
+
+.ad-box {
+  margin:20px 5%;
+  padding:27px 15px;
+  border:1px dashed var(--gold);
+  border-radius:10px;
+  text-align:center;
+  color:var(--muted);
+  background:var(--surface);
+}
+.ad-box strong {
+  display:block;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+
+/* SEARCH AND SECTIONS */
+
+.search-area {
+  padding:18px 5%;
+  text-align:center;
+}
 .search {
   width:100%;
-  max-width:600px;
-  display:block;
-  margin:0 auto;
-  padding:14px;
+  max-width:650px;
+  padding:15px;
   border:1px solid var(--gold);
   border-radius:8px;
   background:var(--surface);
   color:var(--text);
   font-size:15px;
 }
-
+section {padding:25px 5%}
+.section-title {
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin-bottom:20px;
+}
 .categories {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(105px,1fr));
+  gap:13px;
 }
-
 .category {
   background:var(--surface);
   border:1px solid var(--border);
@@ -171,97 +208,223 @@ section {padding:25px 5%;}
   text-align:center;
   border-radius:10px;
   color:var(--text);
+  cursor:pointer;
+  font-size:13px;
 }
-
 .category span {
   display:block;
-  font-size:27px;
-  margin-bottom:9px;
+  font-size:29px;
+  margin-bottom:10px;
+}
+.category.selected {
+  border-color:var(--gold);
+  color:var(--gold);
 }
 
-.category:hover {
-  border-color:var(--gold);
-}
+/* PRODUCTS */
 
 .products {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
 }
-
 .product {
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:11px;
   overflow:hidden;
 }
-
 .product-image {
-  height:145px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(145deg,#29200d,#111111);
-  font-size:55px;
+  height:210px;
+  background:#201b10;
+  overflow:hidden;
 }
-
-.product-info {padding:13px;}
-
-.product h3 {
-  font-size:14px;
-  margin-bottom:9px;
+.product-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
-
+.product-info {padding:14px}
+.product h3 {font-size:15px;margin-bottom:8px}
+.product-description {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:10px;
+}
 .price {
   color:var(--gold);
   font-weight:bold;
   margin-bottom:12px;
 }
-
-.product button {
-  background:var(--gold);
-  color:#080808;
-  padding:10px;
-  width:100%;
+.product-actions {display:flex;gap:7px}
+.product-actions button {
+  flex:1;
+  padding:11px 5px;
   border-radius:5px;
+  font-size:12px;
   font-weight:bold;
 }
-
-.ad-box {
-  border:1px dashed var(--gold);
-  border-radius:10px;
-  padding:30px 15px;
-  text-align:center;
-  color:var(--muted);
-  margin:20px 5%;
+.add-btn {
+  background:var(--gold);
+  color:#080808;
+  border:0;
 }
-
-.ad-box strong {
-  display:block;
+.details-btn {
+  background:transparent;
   color:var(--gold);
-  margin-bottom:8px;
+  border:1px solid var(--gold);
 }
+
+.deals {
+  background:var(--surface);
+  border:1px solid var(--gold);
+  border-radius:12px;
+  padding:30px 22px;
+}
+.deals h2 {color:var(--gold);margin-bottom:12px}
+.deals p {color:var(--muted);line-height:1.7}
 
 footer {
-  margin-top:35px;
-  padding:35px 5%;
+  margin-top:30px;
+  padding:30px 5%;
   background:var(--surface);
   border-top:1px solid var(--gold);
   text-align:center;
   color:var(--muted);
   line-height:2;
 }
+footer strong {color:var(--gold)}
 
-footer strong {color:var(--gold);}
+/* BOTTOM NAVIGATION */
+
+.bottom-nav {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  min-height:70px;
+  padding:8px 3px;
+  padding-bottom:max(8px,env(safe-area-inset-bottom));
+  background:var(--surface);
+  border-top:1px solid var(--gold);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  z-index:40;
+}
+.nav-item {
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  font-size:10px;
+  font-weight:bold;
+}
+.nav-icon {font-size:21px}
+.nav-item.active {color:var(--gold)}
+
+/* MODALS */
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.modal-content {
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--gold);
+  border-radius:14px;
+  padding:24px;
+  width:100%;
+  max-width:420px;
+  max-height:85vh;
+  overflow-y:auto;
+}
+.modal-content h2 {
+  color:var(--gold);
+  margin-bottom:12px;
+  font-family:Georgia,serif;
+}
+.modal-content p {
+  line-height:1.7;
+  color:var(--muted);
+  margin-bottom:15px;
+}
+.modal-content input {
+  width:100%;
+  padding:13px;
+  margin:8px 0;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:var(--bg);
+  color:var(--text);
+}
+.modal-btn {
+  width:100%;
+  padding:13px;
+  border-radius:7px;
+  margin-top:10px;
+  background:var(--gold);
+  color:#080808;
+  border:0;
+  font-weight:bold;
+}
+.secondary-btn {
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+}
+.close-btn {
+  background:transparent;
+  color:var(--muted);
+  border:0;
+  padding:12px;
+  display:block;
+  margin:10px auto 0;
+}
+.modal-link {
+  color:var(--gold);
+  cursor:pointer;
+  text-align:center;
+  margin-top:16px;
+  font-size:13px;
+}
+.settings-option {
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.settings-option button {
+  background:var(--gold);
+  color:#080808;
+  border:0;
+  padding:9px 12px;
+  border-radius:6px;
+  font-weight:bold;
+}
 
 @media(max-width:500px) {
-  header {padding:13px 4%;}
-  .logo {font-size:22px;}
-  nav {gap:15px;overflow-x:auto;justify-content:flex-start;}
-  nav a {white-space:nowrap;}
-  .hero {padding:40px 20px;}
-  .products {grid-template-columns:repeat(2,minmax(0,1fr));}
-  .product-image {height:125px;}
+  header {padding:13px 4%}
+  .logo {font-size:22px}
+  .promo-slide {height:300px}
+  .promo-overlay {padding:20px}
+  .products {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .product-image {height:155px}
+  .product-actions {flex-direction:column}
+  .nav-item {font-size:9px}
 }
 </style>
 </head>
@@ -273,159 +436,581 @@ footer strong {color:var(--gold);}
     W.M.S
     <small>FASHION & LUXURIOUS WEARS</small>
   </div>
-
   <div class="header-actions">
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀️</button>
-    <button class="cart-btn">🛒 <span id="cartCount">0</span></button>
+    <button class="theme-btn" id="themeBtn"
+      onclick="toggleTheme()">☀️</button>
+    <button class="cart-btn" onclick="showCart()">
+      🛒 <span id="cartCount">0</span>
+    </button>
   </div>
 </header>
 
-<nav>
-  <a href="#">Home</a>
-  <a href="#categories">Categories</a>
-  <a href="#products">Shop</a>
-  <a href="#deals">Deals</a>
-  <a href="#contact">Contact</a>
-</nav>
+<!-- SWIPEABLE PROMOTIONAL SHOWCASE -->
 
-<div class="hero">
-  <div class="hero-content">
-    <h1>Elevate Your Style.</h1>
-    <p>
-      Discover fashion, luxury and elegance.
-      Find your favourite styles and shop
-      with W.M.S Fashion & Luxurious Wears.
-    </p>
-    <button class="gold-btn"
-      onclick="document.getElementById('products').scrollIntoView()">
-      SHOP NOW →
-    </button>
+<div class="promo-area">
+  <div class="promo-carousel" id="promoCarousel">
+
+    <div class="promo-slide">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200"
+        alt="Fashion collection">
+      <div class="promo-overlay">
+        <h1>Elevate Your Style.</h1>
+        <p>Discover fashion, luxury and elegance with W.M.S.</p>
+        <button onclick="homeShop()">EXPLORE NOW →</button>
+      </div>
+    </div>
+
+    <div class="promo-slide">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200"
+        alt="Sneaker promotion">
+      <div class="promo-overlay">
+        <h1>Step Into Luxury.</h1>
+        <p>Discover stylish footwear and fresh collections.</p>
+        <button onclick="homeShop()">SHOP COLLECTION →</button>
+      </div>
+    </div>
+
+    <div class="promo-slide">
+      <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1200"
+        alt="Luxury handbag promotion">
+      <div class="promo-overlay">
+        <h1>Luxury In Every Detail.</h1>
+        <p>Find accessories that make your style stand out.</p>
+        <button onclick="homeShop()">DISCOVER MORE →</button>
+      </div>
+    </div>
+
   </div>
+
+  <div class="promo-dots" id="promoDots">
+    <button class="promo-dot active" onclick="goSlide(0)"></button>
+    <button class="promo-dot" onclick="goSlide(1)"></button>
+    <button class="promo-dot" onclick="goSlide(2)"></button>
+  </div>
+
+  <div class="swipe-hint">← SWIPE TO EXPLORE MORE →</div>
 </div>
 
-<section>
+<!-- FIRST ADVERTISEMENT -->
+
+<div class="ad-box">
+  <strong>W.M.S ADVERTISEMENT SPACE 01</strong>
+  Your brand could be featured here.
+</div>
+
+<div class="search-area">
   <input class="search" id="searchInput"
-    type="search" placeholder="🔍 Search fashion and products..."
+    type="search"
+    placeholder="🔍 Search fashion and products..."
     oninput="searchProducts()">
-</section>
+</div>
+
+<!-- CATEGORIES -->
 
 <section id="categories">
   <h2 class="section-title">Shop By Category</h2>
 
   <div class="categories">
-    <div class="category"><span>👔</span>Men's Fashion</div>
-    <div class="category"><span>👗</span>Women's Fashion</div>
-    <div class="category"><span>👟</span>Shoes</div>
-    <div class="category"><span>👜</span>Handbags</div>
-    <div class="category"><span>⌚</span>Watches</div>
-    <div class="category"><span>💎</span>Jewellery</div>
-    <div class="category"><span>🌸</span>Beauty</div>
+    <div class="category" data-filter="Men"
+      onclick="filterCategory('Men',this)">
+      <span>👔</span>Men's Fashion
+    </div>
+
+    <div class="category" data-filter="Shoes"
+      onclick="filterCategory('Shoes',this)">
+      <span>👟</span>Shoes
+    </div>
+
+    <div class="category" data-filter="Handbag"
+      onclick="filterCategory('Handbag',this)">
+      <span>👜</span>Handbags
+    </div>
+
+    <div class="category" data-filter="Watch"
+      onclick="filterCategory('Watch',this)">
+      <span>⌚</span>Watches
+    </div>
+
+    <div class="category" data-filter="Jewellery"
+      onclick="filterCategory('Jewellery',this)">
+      <span>💎</span>Jewellery
+    </div>
   </div>
 </section>
 
-<div class="ad-box">
-  <strong>W.M.S ADVERTISEMENT SPACE</strong>
-  Your brand could be featured here.
-</div>
+<!-- PRODUCTS -->
 
 <section id="products">
-  <h2 class="section-title">Featured Products</h2>
+  <h2 class="section-title" id="productHeading">
+    Featured Products
+  </h2>
 
   <div class="products" id="productGrid">
 
-    <div class="product">
-      <div class="product-image">👟</div>
+    <div class="product" data-category="Shoes">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+          alt="Luxury sneakers">
+      </div>
       <div class="product-info">
         <h3>Luxury Sneakers</h3>
-        <div class="price">₦ Price coming soon</div>
-        <button onclick="addToCart()">Add to Cart</button>
+        <p class="product-description">Stylish everyday footwear.</p>
+        <div class="price">Price coming soon</div>
+        <div class="product-actions">
+          <button class="add-btn" onclick="addToCart('Luxury Sneakers')">Add to Cart</button>
+          <button class="details-btn" onclick="showDetails('Luxury Sneakers','Stylish everyday footwear.')">Details</button>
+        </div>
       </div>
     </div>
 
-    <div class="product">
-      <div class="product-image">👜</div>
+    <div class="product" data-category="Handbag">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"
+          alt="Luxury handbag">
+      </div>
       <div class="product-info">
         <h3>Luxury Handbag</h3>
-        <div class="price">₦ Price coming soon</div>
-        <button onclick="addToCart()">Add to Cart</button>
+        <p class="product-description">Elegant handbag for every occasion.</p>
+        <div class="price">Price coming soon</div>
+        <div class="product-actions">
+          <button class="add-btn" onclick="addToCart('Luxury Handbag')">Add to Cart</button>
+          <button class="details-btn" onclick="showDetails('Luxury Handbag','Elegant handbag for every occasion.')">Details</button>
+        </div>
       </div>
     </div>
 
-    <div class="product">
-      <div class="product-image">⌚</div>
+    <div class="product" data-category="Watch">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600"
+          alt="Classic wristwatch">
+      </div>
       <div class="product-info">
         <h3>Classic Wristwatch</h3>
-        <div class="price">₦ Price coming soon</div>
-        <button onclick="addToCart()">Add to Cart</button>
+        <p class="product-description">A timeless accessory.</p>
+        <div class="price">Price coming soon</div>
+        <div class="product-actions">
+          <button class="add-btn" onclick="addToCart('Classic Wristwatch')">Add to Cart</button>
+          <button class="details-btn" onclick="showDetails('Classic Wristwatch','A timeless accessory.')">Details</button>
+        </div>
       </div>
     </div>
 
-    <div class="product">
-      <div class="product-image">👗</div>
+    <div class="product" data-category="Men">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600"
+          alt="Men's fashion">
+      </div>
       <div class="product-info">
-        <h3>Women's Fashion</h3>
-        <div class="price">₦ Price coming soon</div>
-        <button onclick="addToCart()">Add to Cart</button>
+        <h3>Men's Fashion</h3>
+        <p class="product-description">Classic style and elegance.</p>
+        <div class="price">Price coming soon</div>
+        <div class="product-actions">
+          <button class="add-btn" onclick="addToCart('Mens Fashion')">Add to Cart</button>
+          <button class="details-btn" onclick="showDetails('Mens Fashion','Classic style and elegance.')">Details</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product" data-category="Jewellery">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600"
+          alt="Luxury jewellery">
+      </div>
+      <div class="product-info">
+        <h3>Luxury Jewellery</h3>
+        <p class="product-description">Beautiful finishing accessories.</p>
+        <div class="price">Price coming soon</div>
+        <div class="product-actions">
+          <button class="add-btn" onclick="addToCart('Luxury Jewellery')">Add to Cart</button>
+          <button class="details-btn" onclick="showDetails('Luxury Jewellery','Beautiful finishing accessories.')">Details</button>
+        </div>
       </div>
     </div>
 
   </div>
-</section>
 
-<section id="deals">
-  <h2 class="section-title">Special Shopping Deals</h2>
-  <p style="color:var(--muted);line-height:1.7">
-    Exciting fashion offers and promotions are coming to W.M.S.
-    Stay connected for exclusive deals.
+  <p id="noProducts" style="display:none;color:var(--muted);padding:20px 0">
+    No products found. Try another category.
   </p>
 </section>
 
-<footer id="contact">
+<!-- SECOND ADVERTISEMENT -->
+
+<div class="ad-box">
+  <strong>W.M.S ADVERTISEMENT SPACE 02</strong>
+  Promote your business, products and services here.
+</div>
+
+<section id="deals">
+  <div class="deals">
+    <h2>Special Shopping Deals</h2>
+    <p>Exciting fashion offers and promotions are coming to W.M.S. Stay connected for exclusive deals.</p>
+  </div>
+</section>
+
+<footer>
   <strong>W.M.S FASHION & LUXURIOUS WEARS</strong>
   <p>Elevate Your Style.</p>
   <p>Fashion • Luxury • Elegance</p>
   <p>© 2026 W.M.S. All Rights Reserved.</p>
 </footer>
 
+<!-- BOTTOM NAVIGATION -->
+
+<div class="bottom-nav">
+  <button class="nav-item active" onclick="homeShop()">
+    <span class="nav-icon">⌂</span>
+    <span>Home</span>
+  </button>
+
+  <button class="nav-item" onclick="goTo('categories',1)">
+    <span class="nav-icon">▦</span>
+    <span>Categories</span>
+  </button>
+
+  <button class="nav-item" onclick="showAllProducts()">
+    <span class="nav-icon">🛍️</span>
+    <span>Shop</span>
+  </button>
+
+  <button class="nav-item" onclick="goTo('deals',3)">
+    <span class="nav-icon">🏷️</span>
+    <span>Deals</span>
+  </button>
+
+  <button class="nav-item" onclick="openProfile()">
+    <span class="nav-icon">👤</span>
+    <span>Profile</span>
+  </button>
+</div>
+
+<!-- PROFILE -->
+
+<div class="modal" id="profileModal">
+  <div class="modal-content">
+    <h2 style="text-align:center">My W.M.S Account</h2>
+    <p style="text-align:center">Welcome to W.M.S Fashion & Luxurious Wears.</p>
+
+    <button class="modal-btn" onclick="showRegister()">
+      Create Account
+    </button>
+
+    <button class="modal-btn secondary-btn" onclick="showLogin()">
+      Sign In
+    </button>
+
+    <button class="modal-btn secondary-btn" onclick="openSettings()">
+      ⚙️ Settings
+    </button>
+
+    <button class="close-btn" onclick="closeModal('profileModal')">
+      Close
+    </button>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+
+<div class="modal" id="settingsModal">
+  <div class="modal-content">
+    <h2>Settings</h2>
+    <p>Customize your W.M.S experience.</p>
+
+    <div class="settings-option">
+      <span>Appearance</span>
+      <button id="settingsThemeBtn" onclick="toggleTheme()">
+        White Theme
+      </button>
+    </div>
+
+    <div class="settings-option">
+      <span>Current theme</span>
+      <strong id="currentTheme">Black & Gold</strong>
+    </div>
+
+    <button class="close-btn" onclick="closeModal('settingsModal')">
+      Close Settings
+    </button>
+  </div>
+</div>
+
+<!-- REGISTRATION -->
+
+<div class="modal" id="registerModal">
+  <div class="modal-content">
+    <h2>Create Your Account</h2>
+    <p>Join W.M.S Fashion & Luxurious Wears.</p>
+
+    <form onsubmit="demoAccount(event,'register')">
+      <input type="text" placeholder="Full name" required>
+      <input type="email" placeholder="Email address" required>
+      <input type="tel" placeholder="Phone number" required>
+      <input type="password" placeholder="Create password" minlength="8" required>
+      <button class="modal-btn" type="submit">Create Account</button>
+    </form>
+
+    <div class="modal-link" onclick="showLogin()">
+      Already have an account? Sign In
+    </div>
+    <button class="close-btn" onclick="closeModal('registerModal')">Close</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <h2>Welcome Back</h2>
+    <p>Sign in to your W.M.S account.</p>
+
+    <form onsubmit="demoAccount(event,'login')">
+      <input type="email" placeholder="Email address" required>
+      <input type="password" placeholder="Password" required>
+      <button class="modal-btn" type="submit">Sign In</button>
+    </form>
+
+    <div class="modal-link" onclick="showRegister()">
+      New to W.M.S? Create Account
+    </div>
+    <button class="close-btn" onclick="closeModal('loginModal')">Close</button>
+  </div>
+</div>
+
+<!-- PRODUCT DETAILS -->
+
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <h2 id="modalTitle">Product</h2>
+    <p id="modalDescription"></p>
+    <button class="modal-btn" onclick="closeModal('productModal')">Close</button>
+  </div>
+</div>
+
 <script>
+
+/* THEME */
+
 function toggleTheme() {
   const current = document.documentElement.dataset.theme;
   const next = current === "light" ? "dark" : "light";
 
   document.documentElement.dataset.theme = next;
-  localStorage.setItem("wms-theme", next);
-  updateThemeButton();
+  localStorage.setItem("wms-theme",next);
+  updateTheme();
 }
 
-function updateThemeButton() {
+function updateTheme() {
   const light = document.documentElement.dataset.theme === "light";
-  document.getElementById("themeBtn").textContent =
-    light ? "🌙" : "☀️";
+
+  document.getElementById("themeBtn").textContent = light ? "🌙" : "☀️";
+  document.getElementById("settingsThemeBtn").textContent = light ? "Black Theme" : "White Theme";
+  document.getElementById("currentTheme").textContent = light ? "White & Gold" : "Black & Gold";
 }
 
-const savedTheme = localStorage.getItem("wms-theme");
-document.documentElement.dataset.theme = savedTheme || "dark";
-updateThemeButton();
+document.documentElement.dataset.theme =
+  localStorage.getItem("wms-theme") || "dark";
+updateTheme();
 
-let cart = 0;
+/* BOTTOM NAVIGATION */
 
-function addToCart() {
-  cart++;
-  document.getElementById("cartCount").textContent = cart;
+function setActive(index) {
+  document.querySelectorAll(".nav-item").forEach((item,i) => {
+    item.classList.toggle("active",i === index);
+  });
 }
 
-function searchProducts() {
-  const query = document.getElementById("searchInput")
-    .value.toLowerCase();
+function goTo(id,index) {
+  setActive(index);
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+  /* HOME RESTORES ALL PRODUCTS */
+
+function homeShop() {
+  document.getElementById("searchInput").value = "";
+  document.querySelectorAll(".product").forEach(p => p.style.display = "");
+  document.querySelectorAll(".category").forEach(c => c.classList.remove("selected"));
+
+  document.getElementById("productHeading").textContent = "Featured Products";
+  document.getElementById("noProducts").style.display = "none";
+
+  setActive(0);window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* SHOP SHOWS ALL PRODUCTS */
+
+function showAllProducts() {
+  document.getElementById("searchInput").value = "";
+  document.querySelectorAll(".product").forEach(p => p.style.display = "");
+  document.querySelectorAll(".category").forEach(c => c.classList.remove("selected"));
+
+  document.getElementById("productHeading").textContent = "All Products";
+  document.getElementById("noProducts").style.display = "none";
+
+  setActive(2);
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+/* CATEGORY FILTER */
+
+function filterCategory(category,element) {
+  document.getElementById("searchInput").value = "";
 
   document.querySelectorAll(".product").forEach(product => {
     product.style.display =
-      product.textContent.toLowerCase().includes(query)
-      ? "" : "none";
+      product.dataset.category === category ? "" : "none";
   });
-}
-</script>
 
+  document.querySelectorAll(".category").forEach(c => c.classList.remove("selected"));
+  element.classList.add("selected");
+
+  document.getElementById("productHeading").textContent = category + " Products";
+  checkProducts();
+
+  setActive(1);
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+/* SEARCH */
+
+function searchProducts() {
+  const query = document.getElementById("searchInput").value.toLowerCase();document.querySelectorAll(".product").forEach(product => {
+    product.style.display =
+      product.textContent.toLowerCase().includes(query) ? "" : "none";
+  });
+
+  document.querySelectorAll(".category").forEach(c => c.classList.remove("selected"));
+
+  document.getElementById("productHeading").textContent =
+    query ? "Search Results" : "All Products";
+
+  checkProducts();
+}
+
+function checkProducts() {
+  const visible = [...document.querySelectorAll(".product")]
+    .some(p => p.style.display !== "none");document.getElementById("noProducts").style.display =
+    visible ? "none" : "block";
+}
+
+/* PROMOTIONAL CAROUSEL */
+
+const carousel = document.getElementById("promoCarousel");
+const slides = carousel.querySelectorAll(".promo-slide");
+const dots = document.querySelectorAll(".promo-dot");
+
+function goSlide(index) {
+  carousel.scrollTo({
+    left:slides[index].offsetLeft - slides[0].offsetLeft,
+    behavior:"smooth"
+  });
+  updateDots(index);
+}
+
+function updateDots(index) {
+  dots.forEach((dot,i) => dot.classList.toggle("active",i === index));
+}
+
+carousel.addEventListener("scroll",() => {
+  let nearest = 0;
+  let distance = Infinity;
+
+  slides.forEach((slide,i) => {
+    const d = Math.abs(slide.getBoundingClientRect().left -
+      carousel.getBoundingClientRect().left);
+    if(d < distance) {
+      distance = d;
+      nearest = i;
+    }
+  });
+
+  updateDots(nearest);
+});
+
+/* Auto-slide while customer is not interacting */
+
+let autoSlide = setInterval(() => {
+  const current = [...dots].findIndex(dot => dot.classList.contains("active"));
+  goSlide((current + 1) % slides.length);
+},5000);
+
+carousel.addEventListener("touchstart",() => clearInterval(autoSlide),{passive:true});carousel.addEventListener("touchend",() => {
+  clearInterval(autoSlide);
+  autoSlide = setInterval(() => {
+    const current = [...dots].findIndex(dot => dot.classList.contains("active"));
+    goSlide((current + 1) % slides.length);
+  },5000);
+},{passive:true});
+
+/* PROFILE AND SETTINGS */
+
+function openProfile() {
+  setActive(4);
+  openModal("profileModal");
+}
+
+function openSettings() {
+  closeModal("profileModal");
+  openModal("settingsModal");
+}
+
+function showRegister() {
+  closeModal("profileModal");
+  closeModal("loginModal");
+  openModal("registerModal");
+}
+
+function showLogin() {
+  closeModal("profileModal");
+  closeModal("registerModal");
+  openModal("loginModal");
+  }function demoAccount(event,type) {
+  event.preventDefault();
+  alert(type === "register"
+    ? "Registration interface ready. Real account creation will be activated after Supabase integration."
+    : "Login interface ready. Real sign-in will be activated after Supabase integration.");
+}
+
+/* MODALS */
+
+function openModal(id) {
+  document.getElementById(id).style.display = "flex";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click",event => {
+    if(event.target === modal) modal.style.display = "none";
+  });
+});
+
+/* CART DEMO */
+
+let cart = 0;
+let cartItems = [];
+
+function addToCart(name) {
+  cart++;
+  cartItems.push(name);
+  document.getElementById("cartCount").textContent = cart;
+  alert(name + " added to your demo cart!");
+}
+
+function showCart() {
+  alert("Your demo cart has " + cart + " item(s):\n" +
+    (cartItems.join("\n") || "Your cart is empty."));
+}
+
+/* PRODUCT DETAILS */
+  function showDetails(title,description) {
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalDescription").textContent = description;
+  openModal("productModal");
+}
+
+</script>
 </body>
-    </html>
-  
+</html>
