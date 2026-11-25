@@ -276,15 +276,149 @@ section {padding:25px 5%}
   border:1px solid var(--gold);
 }
 
+
 .deals {
+  padding:25px 5%;
+}
+
+.deals-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.deals-heading h2 {
+  color:var(--gold);
+  font-family:Georgia,serif;
+  font-size:27px;
+  margin-bottom:7px;
+}
+
+.deals-heading p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.deal-countdown {
   background:var(--surface);
   border:1px solid var(--gold);
-  border-radius:12px;
-  padding:30px 22px;
+  border-radius:9px;
+  padding:12px 18px;
+  text-align:center;
 }
-.deals h2 {color:var(--gold);margin-bottom:12px}
-.deals p {color:var(--muted);line-height:1.7}
 
+.deal-countdown span {
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.deal-countdown strong {
+  color:var(--gold);
+  font-size:22px;
+  letter-spacing:2px;
+}
+
+.deal-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+}
+
+.deal-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:11px;
+  overflow:hidden;
+}
+
+.deal-image {
+  height:190px;
+  position:relative;
+  background:#201b10;
+}
+
+.deal-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.deal-badge {
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:var(--gold);
+  color:#080808;
+  padding:7px 10px;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.deal-info {
+  padding:14px;
+}
+
+.deal-info h3 {
+  font-size:15px;
+  margin-bottom:10px;
+}
+
+.deal-prices {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-bottom:13px;
+}
+
+.old-price {
+  color:var(--muted);
+  text-decoration:line-through;
+  font-size:12px;
+}
+
+.new-price {
+  color:var(--gold);
+  font-size:17px;
+  font-weight:bold;
+}
+
+.deal-action {
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:6px;
+  background:var(--gold);
+  color:#080808;
+  font-weight:bold;
+}
+
+.deal-note {
+  color:var(--muted);
+  font-size:11px;
+  margin-top:15px;
+  text-align:center;
+}
+
+@media(max-width:500px) {
+  .deal-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .deal-image {
+    height:145px;
+  }
+  .deals-heading h2 {
+    font-size:23px;
+  }
+}
+  
 footer {
   margin-top:30px;
   padding:30px 5%;
@@ -641,13 +775,90 @@ footer strong {color:var(--gold)}
   Promote your business, products and services here.
 </div>
 
+
 <section id="deals">
   <div class="deals">
-    <h2>Special Shopping Deals</h2>
-    <p>Exciting fashion offers and promotions are coming to W.M.S. Stay connected for exclusive deals.</p>
+
+    <div class="deals-heading">
+      <div>
+        <h2>🔥 Special Shopping Deals</h2>
+        <p>Discover exclusive offers and limited-time fashion deals.</p>
+      </div>
+
+      <div class="deal-countdown">
+        <span>DEMO SALE ENDS IN</span>
+        <strong id="dealCountdown">12:00:00</strong>
+      </div>
+    </div>
+
+    <div class="deal-grid">
+
+      <div class="deal-card">
+        <div class="deal-image">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+            alt="Premium sneakers">
+          <span class="deal-badge">22% OFF</span>
+        </div>
+        <div class="deal-info">
+          <h3>Premium Sneakers</h3>
+          <div class="deal-prices">
+            <span class="old-price">₦45,000</span>
+            <span class="new-price">₦35,000</span>
+          </div>
+          <button class="deal-action"
+            onclick="addToCart('Premium Sneakers')">
+            SHOP DEAL →
+          </button>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"
+            alt="Luxury handbag">
+          <span class="deal-badge">20% OFF</span>
+        </div>
+        <div class="deal-info">
+          <h3>Luxury Handbag</h3>
+          <div class="deal-prices">
+            <span class="old-price">₦60,000</span>
+            <span class="new-price">₦48,000</span>
+          </div>
+          <button class="deal-action"
+            onclick="addToCart('Luxury Handbag')">
+            SHOP DEAL →
+          </button>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-image">
+          <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600"
+            alt="Classic wristwatch">
+          <span class="deal-badge">20% OFF</span>
+        </div>
+        <div class="deal-info">
+          <h3>Classic Wristwatch</h3>
+          <div class="deal-prices">
+            <span class="old-price">₦80,000</span>
+            <span class="new-price">₦64,000</span>
+          </div>
+          <button class="deal-action"
+            onclick="addToCart('Classic Wristwatch')">
+            SHOP DEAL →
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="deal-note">
+      Demonstration deals and prices. Official offers will be managed by W.M.S.
+    </p>
+
   </div>
 </section>
-
+  
 <footer>
   <strong>W.M.S FASHION & LUXURIOUS WEARS</strong>
   <p>Elevate Your Style.</p>
@@ -1004,6 +1215,33 @@ function showCart() {
     (cartItems.join("\n") || "Your cart is empty."));
 }
 
+/* SPECIAL DEALS DEMO COUNTDOWN */
+
+let dealTimeRemaining = 12 * 60 * 60;
+
+function updateDealCountdown() {
+  const countdown = document.getElementById("dealCountdown");
+
+  if (dealTimeRemaining <= 0) {
+    countdown.textContent = "SALE ENDED";
+    return;
+  }
+
+  const hours = Math.floor(dealTimeRemaining / 3600);
+  const minutes = Math.floor((dealTimeRemaining % 3600) / 60);
+  const seconds = dealTimeRemaining % 60;
+
+  countdown.textContent =
+    String(hours).padStart(2,"0") + ":" +
+    String(minutes).padStart(2,"0") + ":" +
+    String(seconds).padStart(2,"0");
+
+  dealTimeRemaining--;
+}
+
+updateDealCountdown();
+setInterval(updateDealCountdown,1000);
+  
 /* PRODUCT DETAILS */
   function showDetails(title,description) {
   document.getElementById("modalTitle").textContent = title;
