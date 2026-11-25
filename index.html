@@ -1012,22 +1012,6 @@ const wmsSupabase = window.supabase.createClient(
 console.log("W.M.S Supabase client initialized!");
 
   
-/* TEST W.M.S DATABASE CONNECTION */
-
-(async function testWMSConnection() {
-  const { data, error } = await wmsSupabase
-    .from("products")
-    .select("id")
-    .limit(1);
-
-  if (error) {
-    alert("W.M.S database connection failed: " + error.message);
-  } else {
-    alert("SUCCESS! W.M.S is connected to its database.");
-  }
-})();
-  
-  
 /* THEME */
 
 function toggleTheme() {
