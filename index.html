@@ -1002,6 +1002,15 @@ footer strong {color:var(--gold)}
 
 <script>
 
+// INITIALIZE W.M.S SUPABASE
+
+const wmsSupabase = window.supabase.createClient(
+  window.WMS_SUPABASE_URL,
+  window.WMS_SUPABASE_KEY
+);
+
+console.log("W.M.S Supabase client initialized!");
+  
 /* THEME */
 
 function toggleTheme() {
