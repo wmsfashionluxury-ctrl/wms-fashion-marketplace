@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>W.M.S | Fashion & Luxurious Wears</title>
+
+<style>
+:root {
+  --bg:#080808;
+  --surface:#151515;
+  --text:#ffffff;
+  --muted:#aaaaaa;
+  --gold:#d4af37;
+  --border:#292929;
+}
+
+[data-theme="light"] {
+  --bg:#ffffff;
+  --surface:#f5f3ed;
+  --text:#171717;
+  --muted:#666666;
+  --gold:#a77b16;
+  --border:#e5dfd1;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  transition:background .3s,color .3s;
+}
+
+header {
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:16px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo {
+  color:var(--gold);
+  font-family:Georgia,serif;
+  font-size:27px;
+  font-weight:bold;
+}
+
+.logo small {
+  display:block;
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--text);
+}
+
+.header-actions {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+button {
+  cursor:pointer;
+  border:none;
+}
+
+.theme-btn,.cart-btn {
+  background:var(--bg);
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:10px 13px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+nav {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:15px;
+  border-bottom:1px solid var(--border);
+}
+
+nav a {
+  color:var(--text);
+  text-decoration:none;
+  font-size:13px;
+}
+
+nav a:hover {color:var(--gold);}
+
+.hero {
+  margin:25px 5%;
+  padding:65px 35px;
+  min-height:310px;
+  border:1px solid var(--gold);
+  border-radius:15px;
+  background:linear-gradient(110deg,#080808,#29200d,#080808);
+  display:flex;
+  align-items:center;
+}
+
+.hero-content {max-width:550px;}
+
+.hero h1 {
+  font-family:Georgia,serif;
+  color:#e5c15a;
+  font-size:clamp(32px,6vw,55px);
+  margin-bottom:15px;
+}
+
+.hero p {
+  color:#eeeeee;
+  line-height:1.7;
+  margin-bottom:22px;
+}
+
+.gold-btn {
+  background:var(--gold);
+  color:#080808;
+  padding:13px 24px;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+section {padding:25px 5%;}
+
+.section-title {
+  font-family:Georgia,serif;
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.search {
+  width:100%;
+  max-width:600px;
+  display:block;
+  margin:0 auto;
+  padding:14px;
+  border:1px solid var(--gold);
+  border-radius:8px;
+  background:var(--surface);
+  color:var(--text);
+  font-size:15px;
+}
+
+.categories {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:12px;
+}
+
+.category {
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:20px 8px;
+  text-align:center;
+  border-radius:10px;
+  color:var(--text);
+}
+
+.category span {
+  display:block;
+  font-size:27px;
+  margin-bottom:9px;
+}
+
+.category:hover {
+  border-color:var(--gold);
+}
+
+.products {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:15px;
+}
+
+.product {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.product-image {
+  height:145px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#29200d,#111111);
+  font-size:55px;
+}
+
+.product-info {padding:13px;}
+
+.product h3 {
+  font-size:14px;
+  margin-bottom:9px;
+}
+
+.price {
+  color:var(--gold);
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.product button {
+  background:var(--gold);
+  color:#080808;
+  padding:10px;
+  width:100%;
+  border-radius:5px;
+  font-weight:bold;
+}
+
+.ad-box {
+  border:1px dashed var(--gold);
+  border-radius:10px;
+  padding:30px 15px;
+  text-align:center;
+  color:var(--muted);
+  margin:20px 5%;
+}
+
+.ad-box strong {
+  display:block;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+
+footer {
+  margin-top:35px;
+  padding:35px 5%;
+  background:var(--surface);
+  border-top:1px solid var(--gold);
+  text-align:center;
+  color:var(--muted);
+  line-height:2;
+}
+
+footer strong {color:var(--gold);}
+
+@media(max-width:500px) {
+  header {padding:13px 4%;}
+  .logo {font-size:22px;}
+  nav {gap:15px;overflow-x:auto;justify-content:flex-start;}
+  nav a {white-space:nowrap;}
+  .hero {padding:40px 20px;}
+  .products {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .product-image {height:125px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    W.M.S
+    <small>FASHION & LUXURIOUS WEARS</small>
+  </div>
+
+  <div class="header-actions">
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀️</button>
+    <button class="cart-btn">🛒 <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#categories">Categories</a>
+  <a href="#products">Shop</a>
+  <a href="#deals">Deals</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Elevate Your Style.</h1>
+    <p>
+      Discover fashion, luxury and elegance.
+      Find your favourite styles and shop
+      with W.M.S Fashion & Luxurious Wears.
+    </p>
+    <button class="gold-btn"
+      onclick="document.getElementById('products').scrollIntoView()">
+      SHOP NOW →
+    </button>
+  </div>
+</div>
+
+<section>
+  <input class="search" id="searchInput"
+    type="search" placeholder="🔍 Search fashion and products..."
+    oninput="searchProducts()">
+</section>
+
+<section id="categories">
+  <h2 class="section-title">Shop By Category</h2>
+
+  <div class="categories">
+    <div class="category"><span>👔</span>Men's Fashion</div>
+    <div class="category"><span>👗</span>Women's Fashion</div>
+    <div class="category"><span>👟</span>Shoes</div>
+    <div class="category"><span>👜</span>Handbags</div>
+    <div class="category"><span>⌚</span>Watches</div>
+    <div class="category"><span>💎</span>Jewellery</div>
+    <div class="category"><span>🌸</span>Beauty</div>
+  </div>
+</section>
+
+<div class="ad-box">
+  <strong>W.M.S ADVERTISEMENT SPACE</strong>
+  Your brand could be featured here.
+</div>
+
+<section id="products">
+  <h2 class="section-title">Featured Products</h2>
+
+  <div class="products" id="productGrid">
+
+    <div class="product">
+      <div class="product-image">👟</div>
+      <div class="product-info">
+        <h3>Luxury Sneakers</h3>
+        <div class="price">₦ Price coming soon</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">👜</div>
+      <div class="product-info">
+        <h3>Luxury Handbag</h3>
+        <div class="price">₦ Price coming soon</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">⌚</div>
+      <div class="product-info">
+        <h3>Classic Wristwatch</h3>
+        <div class="price">₦ Price coming soon</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">👗</div>
+      <div class="product-info">
+        <h3>Women's Fashion</h3>
+        <div class="price">₦ Price coming soon</div>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="deals">
+  <h2 class="section-title">Special Shopping Deals</h2>
+  <p style="color:var(--muted);line-height:1.7">
+    Exciting fashion offers and promotions are coming to W.M.S.
+    Stay connected for exclusive deals.
+  </p>
+</section>
+
+<footer id="contact">
+  <strong>W.M.S FASHION & LUXURIOUS WEARS</strong>
+  <p>Elevate Your Style.</p>
+  <p>Fashion • Luxury • Elegance</p>
+  <p>© 2026 W.M.S. All Rights Reserved.</p>
+</footer>
+
+<script>
+function toggleTheme() {
+  const current = document.documentElement.dataset.theme;
+  const next = current === "light" ? "dark" : "light";
+
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("wms-theme", next);
+  updateThemeButton();
+}
+
+function updateThemeButton() {
+  const light = document.documentElement.dataset.theme === "light";
+  document.getElementById("themeBtn").textContent =
+    light ? "🌙" : "☀️";
+}
+
+const savedTheme = localStorage.getItem("wms-theme");
+document.documentElement.dataset.theme = savedTheme || "dark";
+updateThemeButton();
+
+let cart = 0;
+
+function addToCart() {
+  cart++;
+  document.getElementById("cartCount").textContent = cart;
+}
+
+function searchProducts() {
+  const query = document.getElementById("searchInput")
+    .value.toLowerCase();
+
+  document.querySelectorAll(".product").forEach(product => {
+    product.style.display =
+      product.textContent.toLowerCase().includes(query)
+      ? "" : "none";
+  });
+}
+</script>
+
+</body>
+    </html>
+  
